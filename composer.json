@@ -31,7 +31,7 @@
     "kartik-v/yii2-icons": "1.4.1",
     "kartik-v/yii2-dropdown-x": "*",
     "kartik-v/yii2-export": "1.2.5",
-    "kartik-v/yii2-grid": "3.1.x-dev",
+    "kartik-v/yii2-grid": "3.2.5",
     "kartik-v/yii2-detail-view": "1.7.6",
     "kartik-v/yii2-mpdf": "@dev"
   },
