@@ -4,7 +4,7 @@ use yii\web\View;
 use backend\helpers\Html;
 use backend\components\Pjax;
 use backend\widgets\ActiveForm;
-use backend\modules\performance\forms\PerformanceForm;
+use pvsaintpe\performance\modules\performance\forms\PerformanceForm;
 
 /** @var View $this */
 /** @var PerformanceForm $model */

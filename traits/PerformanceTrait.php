@@ -1,16 +1,15 @@
 <?php
 
-namespace backend\modules\performance\traits;
+namespace pvsaintpe\performance\traits;
 
-use backend\helpers\Html;
-use backend\helpers\Serializer;
-use backend\modules\performance\models\PerformanceAdminSettingsSearch;
-use backend\modules\performance\models\PerformanceColumnSettingsSearch;
-use backend\modules\performance\models\PerformanceLanguageSettingsSearch;
-use backend\modules\performance\models\PerformanceSearch;
-use common\models\Language;
-use common\models\Performance;
-use common\models\query\PerformanceAdminSettingsQuery;
+use pvsaintpe\search\helpers\Html;
+use pvsaintpe\performance\helpers\Serializer;
+use pvsaintpe\performance\modules\performance\models\PerformanceAdminSettingsSearch;
+use pvsaintpe\performance\modules\performance\models\PerformanceColumnSettingsSearch;
+use pvsaintpe\performance\modules\performance\models\PerformanceLanguageSettingsSearch;
+use pvsaintpe\performance\modules\performance\models\PerformanceSearch;
+use pvsaintpe\performance\models\Performance;
+use pvsaintpe\performance\models\query\PerformanceAdminSettingsQuery;
 use Yii;
 use yii\helpers\Url;
 

@@ -1,18 +1,17 @@
 <?php
 
-namespace backend\modules\performance\forms;
+namespace pvsaintpe\performance\modules\performance\forms;
 
-use common\models\Admin;
-use common\models\Performance;
-use common\models\PerformanceAdminSettings;
-use common\models\query\PerformanceAdminSettingsQuery;
+use pvsaintpe\performance\models\Performance;
+use pvsaintpe\performance\models\PerformanceAdminSettings;
+use pvsaintpe\performance\models\query\PerformanceAdminSettingsQuery;
 use yii\base\Model;
 use Yii;
 use yii\web\NotFoundHttpException;
 
 /**
  * Class PerformanceForm
- * @package backend\modules\performance\forms
+ * @package pvsaintpe\performance\modules\performance\forms
  */
 class PerformanceShareForm extends Model
 {
@@ -52,10 +51,6 @@ class PerformanceShareForm extends Model
      * @var Performance
      */
     protected $performance;
-    /**
-     * @var Admin
-     */
-    protected $merchant;
 
     /**
      * @var bool
@@ -148,20 +143,17 @@ class PerformanceShareForm extends Model
     public function init()
     {
         parent::init();
-
-        if ($this->merchant = Admin::find()->id($this->merchant_id)->one()) {
-            if ($performanceAdminSettings = PerformanceAdminSettings::find()
-                ->performanceId($this->getId())
-                ->merchantId($this->merchant_id)
-                ->one()
-            ) {
-                $this->admin_enabled = $performanceAdminSettings->admin_enabled;
-                $this->share_enabled = $performanceAdminSettings->share_enabled;
-                $this->edit_enabled = $performanceAdminSettings->edit_enabled;
-                $this->delete_enabled = $performanceAdminSettings->delete_enabled;
-                $this->view_enabled = $performanceAdminSettings->view_enabled;
-                $this->switch_enabled = $performanceAdminSettings->switch_enabled;
-            }
+        if ($performanceAdminSettings = PerformanceAdminSettings::find()
+            ->performanceId($this->getId())
+            ->merchantId($this->merchant_id)
+            ->one()
+        ) {
+            $this->admin_enabled = $performanceAdminSettings->admin_enabled;
+            $this->share_enabled = $performanceAdminSettings->share_enabled;
+            $this->edit_enabled = $performanceAdminSettings->edit_enabled;
+            $this->delete_enabled = $performanceAdminSettings->delete_enabled;
+            $this->view_enabled = $performanceAdminSettings->view_enabled;
+            $this->switch_enabled = $performanceAdminSettings->switch_enabled;
         }
     }
 

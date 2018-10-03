@@ -1,10 +1,9 @@
 <?php
 
-namespace common\models\base;
+namespace pvsaintpe\performance\models\base;
 
 use Yii;
-use common\models\Admin;
-use common\models\Performance;
+use pvsaintpe\performance\models\Performance;
 
 /**
  * This is the model class for table "performance_admin_settings".
@@ -22,13 +21,10 @@ use common\models\Performance;
  * @property integer $delete_enabled
  * @property integer $switch_enabled
  *
- * @property Admin $merchant
- * @property Admin $createdBy
- * @property Admin $updatedBy
  * @property Performance $performance
  * @property Performance $instancePerformance
  */
-class PerformanceAdminSettingsBase extends \common\components\ActiveRecord
+class PerformanceAdminSettingsBase extends \pvsaintpe\search\components\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -75,7 +71,6 @@ class PerformanceAdminSettingsBase extends \common\components\ActiveRecord
             }],
             [['expired_at'], 'date', 'format' => 'php:Y-m-d H:i:s'],
             [['merchant_id'], 'required'],
-            [['merchant_id'], 'exist', 'skipOnError' => true, 'targetClass' => Admin::class, 'targetAttribute' => ['merchant_id' => 'id']],
             [['performance_id'], 'exist', 'skipOnError' => true, 'targetClass' => Performance::class, 'targetAttribute' => ['performance_id' => 'id']],
             [[
                 'is_default',
@@ -116,33 +111,7 @@ class PerformanceAdminSettingsBase extends \common\components\ActiveRecord
     }
 
     /**
-     * @return \common\models\query\AdminQuery|\yii\db\ActiveQuery
-     */
-    public function getMerchant()
-    {
-        return $this->hasOne(Admin::class, ['id' => 'merchant_id']);
-    }
-
-    /**
-     * @return \common\models\query\AdminQuery|\yii\db\ActiveQuery
-     */
-    public function getCreatedBy()
-    {
-        return $this->hasOne(Admin::class, ['id' => 'created_by'])
-            ->viaTable('admin via_admin', ['id' => 'merchant_id']);
-    }
-
-    /**
-     * @return \common\models\query\AdminQuery|\yii\db\ActiveQuery
-     */
-    public function getUpdatedBy()
-    {
-        return $this->hasOne(Admin::class, ['id' => 'updated_by'])
-            ->viaTable('admin via_admin', ['id' => 'merchant_id']);
-    }
-
-    /**
-     * @return \common\models\query\PerformanceQuery|\yii\db\ActiveQuery
+     * @return \pvsaintpe\performance\models\query\PerformanceQuery|\yii\db\ActiveQuery
      */
     public function getPerformance()
     {
@@ -150,7 +119,7 @@ class PerformanceAdminSettingsBase extends \common\components\ActiveRecord
     }
 
     /**
-     * @return \common\models\query\PerformanceQuery|\yii\db\ActiveQuery
+     * @return \pvsaintpe\performance\models\query\PerformanceQuery|\yii\db\ActiveQuery
      */
     public function getInstancePerformance()
     {
@@ -160,11 +129,11 @@ class PerformanceAdminSettingsBase extends \common\components\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \common\models\query\PerformanceAdminSettingsQuery the active query used by this AR class.
+     * @return \pvsaintpe\performance\models\query\PerformanceAdminSettingsQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\query\PerformanceAdminSettingsQuery(get_called_class());
+        return new \pvsaintpe\performance\models\query\PerformanceAdminSettingsQuery(get_called_class());
     }
 
     /**
@@ -173,16 +142,9 @@ class PerformanceAdminSettingsBase extends \common\components\ActiveRecord
     public static function singularRelations()
     {
         return [
-            'merchant' => [
-                'hasMany' => false,
-                'class' => 'common\models\Admin',
-                'link' => ['id' => 'merchant_id'],
-                'direct' => true,
-                'viaTable' => false
-            ],
             'performance' => [
                 'hasMany' => false,
-                'class' => 'common\models\Performance',
+                'class' => 'pvsaintpe\performance\models\Performance',
                 'link' => ['id' => 'performance_id'],
                 'direct' => true,
                 'viaTable' => false
@@ -252,27 +214,6 @@ class PerformanceAdminSettingsBase extends \common\components\ActiveRecord
     // {
     //     return $this->performance_id . static::TITLE_SEPARATOR . $this->merchant_id;
     // }
-
-    /**
-     * @param string|array|\yii\db\Expression $condition
-     * @param array $params
-     * @param string|array|\yii\db\Expression $orderBy
-     * @return array
-     */
-    public function merchantIdListItems($condition = null, $params = [], $orderBy = null)
-    {
-        return Admin::findListItems($condition, $params, $orderBy);
-    }
-
-    /**
-     * @param array $condition
-     * @param string|array|\yii\db\Expression $orderBy
-     * @return array
-     */
-    public function merchantIdFilterListItems(array $condition = [], $orderBy = null)
-    {
-        return Admin::findFilterListItems($condition, $orderBy);
-    }
 
     /**
      * @param string|array|\yii\db\Expression $condition

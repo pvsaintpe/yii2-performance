@@ -4,7 +4,7 @@ use backend\helpers\Html;
 use backend\widgets\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\modules\performance\models\PerformanceSearch */
+/* @var $searchModel pvsaintpe\performance\modules\performance\models\PerformanceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $permissionPrefix */
 

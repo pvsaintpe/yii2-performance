@@ -1,19 +1,16 @@
 <?php
 
-namespace backend\modules\performance\forms;
+namespace pvsaintpe\performance\modules\performance\forms;
 
-use backend\components\grid\DataColumn;
-use common\models\Performance;
-use common\models\query\PerformanceAdminSettingsQuery;
-use yii\base\DynamicModel;
-use yii\base\InvalidConfigException;
+use pvsaintpe\performance\models\Performance;
+use pvsaintpe\performance\models\query\PerformanceAdminSettingsQuery;
 use yii\base\Model;
 use Yii;
 use yii\web\NotFoundHttpException;
 
 /**
  * Class PerformanceForm
- * @package backend\modules\performance\forms
+ * @package pvsaintpe\performance\modules\performance\forms
  */
 class PerformanceSettingsForm extends Model
 {

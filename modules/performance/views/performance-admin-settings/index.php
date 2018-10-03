@@ -7,7 +7,7 @@ use common\models\Admin;
 use common\models\PerformanceAdminSettings;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\modules\performance\models\PerformanceAdminSettingsSearch */
+/* @var $searchModel pvsaintpe\performance\modules\performance\models\PerformanceAdminSettingsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $permissionPrefix */
 

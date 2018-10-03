@@ -1,11 +1,11 @@
 <?php
 
-namespace backend\modules\performance\controllers;
+namespace pvsaintpe\performance\modules\performance\controllers;
 
-use backend\modules\performance\models\PerformanceLanguageSettingsSearch;
+use pvsaintpe\performance\modules\performance\models\PerformanceLanguageSettingsSearch;
 use Yii;
-use common\models\PerformanceLanguageSettings;
-use backend\components\Controller;
+use pvsaintpe\performance\models\PerformanceLanguageSettings;
+use pvsaintpe\search\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -17,7 +17,7 @@ use yii\filters\VerbFilter;
  */
 class PerformanceLanguageSettingsController extends Controller
 {
-    protected $searchClass = 'backend\modules\performance\models\PerformanceLanguageSettingsSearch';
+    protected $searchClass = 'pvsaintpe\performance\modules\performance\models\PerformanceLanguageSettingsSearch';
 
     /**
      * @inheritdoc
@@ -59,8 +59,10 @@ class PerformanceLanguageSettingsController extends Controller
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $performance_id
      * @param integer $language_id
-     * @throws NotFoundHttpException if the model cannot be found
      * @return mixed
+     * @throws \yii\base\InvalidConfigException
+     * @throws \yii\base\InvalidRouteException
+     * @throws \yii\console\Exception
      */
     public function actionUpdate($performance_id, $language_id)
     {

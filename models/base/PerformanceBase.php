@@ -1,14 +1,12 @@
 <?php
 
-namespace common\models\base;
+namespace pvsaintpe\performance\models\base;
 
 use Yii;
-use common\models\Admin;
-use common\models\Language;
-use common\models\Performance;
-use common\models\PerformanceAdminSettings;
-use common\models\PerformanceColumnSettings;
-use common\models\PerformanceLanguageSettings;
+use pvsaintpe\performance\models\Performance;
+use pvsaintpe\performance\models\PerformanceAdminSettings;
+use pvsaintpe\performance\models\PerformanceColumnSettings;
+use pvsaintpe\performance\models\PerformanceLanguageSettings;
 
 /**
  * This is the model class for table "performance".
@@ -27,16 +25,11 @@ use common\models\PerformanceLanguageSettings;
  *
  * @property Performance $instancePerformance
  * @property Performance[] $performances
- * @property Admin $merchant
- * @property Admin $createdBy
- * @property Admin $updatedBy
  * @property PerformanceAdminSettings[] $performanceAdminSettings
- * @property Admin[] $merchants
  * @property PerformanceColumnSettings[] $performanceColumnSettings
  * @property PerformanceLanguageSettings[] $performanceLanguageSettings
- * @property Language[] $languages
  */
-class PerformanceBase extends \common\components\ActiveRecord
+class PerformanceBase extends \pvsaintpe\search\components\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -72,7 +65,6 @@ class PerformanceBase extends \common\components\ActiveRecord
             [['name'], 'string', 'max' => 120],
             [['route', 'search_class', 'merchant_id', 'name'], 'unique', 'targetAttribute' => ['route', 'search_class', 'merchant_id', 'name'], 'message' => 'The combination of Мерчант, Search-модель, URL грида and Название has already been taken.'],
             [['instance_performance_id'], 'exist', 'skipOnError' => true, 'targetClass' => Performance::class, 'targetAttribute' => ['instance_performance_id' => 'id']],
-            [['merchant_id'], 'exist', 'skipOnError' => true, 'targetClass' => Admin::class, 'targetAttribute' => ['merchant_id' => 'id']],
             [['enabled'], 'default', 'value' => '1'],
             [['system_defined'], 'default', 'value' => '0'],
             [[
@@ -107,7 +99,7 @@ class PerformanceBase extends \common\components\ActiveRecord
     }
 
     /**
-     * @return \common\models\query\PerformanceQuery|\yii\db\ActiveQuery
+     * @return \pvsaintpe\performance\models\query\PerformanceQuery|\yii\db\ActiveQuery
      */
     public function getInstancePerformance()
     {
@@ -115,7 +107,7 @@ class PerformanceBase extends \common\components\ActiveRecord
     }
 
     /**
-     * @return \common\models\query\PerformanceQuery|\yii\db\ActiveQuery
+     * @return \pvsaintpe\performance\models\query\PerformanceQuery|\yii\db\ActiveQuery
      */
     public function getPerformances()
     {
@@ -123,33 +115,7 @@ class PerformanceBase extends \common\components\ActiveRecord
     }
 
     /**
-     * @return \common\models\query\AdminQuery|\yii\db\ActiveQuery
-     */
-    public function getMerchant()
-    {
-        return $this->hasOne(Admin::class, ['id' => 'merchant_id']);
-    }
-
-    /**
-     * @return \common\models\query\AdminQuery|\yii\db\ActiveQuery
-     */
-    public function getCreatedBy()
-    {
-        return $this->hasOne(Admin::class, ['id' => 'created_by'])
-            ->viaTable('admin via_admin', ['id' => 'merchant_id']);
-    }
-
-    /**
-     * @return \common\models\query\AdminQuery|\yii\db\ActiveQuery
-     */
-    public function getUpdatedBy()
-    {
-        return $this->hasOne(Admin::class, ['id' => 'updated_by'])
-            ->viaTable('admin via_admin', ['id' => 'merchant_id']);
-    }
-
-    /**
-     * @return \common\models\query\PerformanceAdminSettingsQuery|\yii\db\ActiveQuery
+     * @return \pvsaintpe\performance\models\query\PerformanceAdminSettingsQuery|\yii\db\ActiveQuery
      */
     public function getPerformanceAdminSettings()
     {
@@ -157,15 +123,7 @@ class PerformanceBase extends \common\components\ActiveRecord
     }
 
     /**
-     * @return \common\models\query\AdminQuery|\yii\db\ActiveQuery
-     */
-    public function getMerchants()
-    {
-        return $this->hasMany(Admin::class, ['id' => 'merchant_id'])->viaTable('performance_admin_settings', ['performance_id' => 'id']);
-    }
-
-    /**
-     * @return \common\models\query\PerformanceColumnSettingsQuery|\yii\db\ActiveQuery
+     * @return \pvsaintpe\performance\models\query\PerformanceColumnSettingsQuery|\yii\db\ActiveQuery
      */
     public function getPerformanceColumnSettings()
     {
@@ -173,7 +131,7 @@ class PerformanceBase extends \common\components\ActiveRecord
     }
 
     /**
-     * @return \common\models\query\PerformanceLanguageSettingsQuery|\yii\db\ActiveQuery
+     * @return \pvsaintpe\performance\models\query\PerformanceLanguageSettingsQuery|\yii\db\ActiveQuery
      */
     public function getPerformanceLanguageSettings()
     {
@@ -181,20 +139,12 @@ class PerformanceBase extends \common\components\ActiveRecord
     }
 
     /**
-     * @return \common\models\query\LanguageQuery|\yii\db\ActiveQuery
-     */
-    public function getLanguages()
-    {
-        return $this->hasMany(Language::class, ['id' => 'language_id'])->viaTable('performance_language_settings', ['performance_id' => 'id']);
-    }
-
-    /**
      * @inheritdoc
-     * @return \common\models\query\PerformanceQuery the active query used by this AR class.
+     * @return \pvsaintpe\performance\models\query\PerformanceQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\query\PerformanceQuery(get_called_class());
+        return new \pvsaintpe\performance\models\query\PerformanceQuery(get_called_class());
     }
 
     /**
@@ -205,15 +155,8 @@ class PerformanceBase extends \common\components\ActiveRecord
         return [
             'instancePerformance' => [
                 'hasMany' => false,
-                'class' => 'common\models\Performance',
+                'class' => 'pvsaintpe\performance\models\Performance',
                 'link' => ['id' => 'instance_performance_id'],
-                'direct' => true,
-                'viaTable' => false
-            ],
-            'merchant' => [
-                'hasMany' => false,
-                'class' => 'common\models\Admin',
-                'link' => ['id' => 'merchant_id'],
                 'direct' => true,
                 'viaTable' => false
             ]
@@ -228,46 +171,32 @@ class PerformanceBase extends \common\components\ActiveRecord
         return [
             'performances' => [
                 'hasMany' => true,
-                'class' => 'common\models\Performance',
+                'class' => 'pvsaintpe\performance\models\Performance',
                 'link' => ['instance_performance_id' => 'id'],
                 'direct' => false,
                 'viaTable' => false
             ],
             'performanceAdminSettings' => [
                 'hasMany' => true,
-                'class' => 'common\models\PerformanceAdminSettings',
+                'class' => 'pvsaintpe\performance\models\PerformanceAdminSettings',
                 'link' => ['performance_id' => 'id'],
                 'direct' => false,
                 'viaTable' => false
             ],
-            'merchants' => [
-                'hasMany' => true,
-                'class' => 'common\models\Admin',
-                'link' => [],
-                'direct' => false,
-                'viaTable' => 'performance_admin_settings'
-            ],
             'performanceColumnSettings' => [
                 'hasMany' => true,
-                'class' => 'common\models\PerformanceColumnSettings',
+                'class' => 'pvsaintpe\performance\models\PerformanceColumnSettings',
                 'link' => ['performance_id' => 'id'],
                 'direct' => false,
                 'viaTable' => false
             ],
             'performanceLanguageSettings' => [
                 'hasMany' => true,
-                'class' => 'common\models\PerformanceLanguageSettings',
+                'class' => 'pvsaintpe\performance\models\PerformanceLanguageSettings',
                 'link' => ['performance_id' => 'id'],
                 'direct' => false,
                 'viaTable' => false
             ],
-            'languages' => [
-                'hasMany' => true,
-                'class' => 'common\models\Language',
-                'link' => [],
-                'direct' => false,
-                'viaTable' => 'performance_language_settings'
-            ]
         ];
     }
 
@@ -382,26 +311,5 @@ class PerformanceBase extends \common\components\ActiveRecord
     public function instancePerformanceIdFilterListItems(array $condition = [], $orderBy = null)
     {
         return Performance::findFilterListItems($condition, $orderBy);
-    }
-
-    /**
-     * @param string|array|\yii\db\Expression $condition
-     * @param array $params
-     * @param string|array|\yii\db\Expression $orderBy
-     * @return array
-     */
-    public function merchantIdListItems($condition = null, $params = [], $orderBy = null)
-    {
-        return Admin::findListItems($condition, $params, $orderBy);
-    }
-
-    /**
-     * @param array $condition
-     * @param string|array|\yii\db\Expression $orderBy
-     * @return array
-     */
-    public function merchantIdFilterListItems(array $condition = [], $orderBy = null)
-    {
-        return Admin::findFilterListItems($condition, $orderBy);
     }
 }

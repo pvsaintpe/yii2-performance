@@ -4,7 +4,7 @@ use backend\components\View;
 use backend\components\Pjax;
 use backend\traits\SearchTrait;
 use common\components\ActiveRecord;
-use backend\modules\manager\models\MerchantSearch;
+use pvsaintpe\performance\modules\manager\models\MerchantSearch;
 use backend\components\grid\DataColumn;
 use yii\helpers\ArrayHelper;
 use backend\widgets\ActiveForm;
@@ -12,7 +12,7 @@ use kartik\widgets\Select2;
 use yii\helpers\Inflector;
 
 /** @var View $this */
-/** @var \backend\modules\performance\forms\PerformanceSettingsForm $model */
+/** @var \pvsaintpe\performance\modules\performance\forms\PerformanceSettingsForm $model */
 /** @var string $permissionPrefix */
 
 $this->title = Yii::t('payment', 'Настроить представление');

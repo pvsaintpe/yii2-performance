@@ -1,14 +1,13 @@
 <?php
 
-namespace common\models;
+namespace pvsaintpe\performance\models;
 
-use common\models\base\PerformanceAdminSettingsBase;
+use pvsaintpe\performance\models\base\PerformanceAdminSettingsBase;
 use Yii;
-use yii\web\Application;
 
 /**
  * Performance admin settings
- * @see \common\models\query\PerformanceAdminSettingsQuery
+ * @see \pvsaintpe\performance\models\query\PerformanceAdminSettingsQuery
  */
 class PerformanceAdminSettings extends PerformanceAdminSettingsBase
 {

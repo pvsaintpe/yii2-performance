@@ -1,11 +1,11 @@
 <?php
 
-namespace backend\modules\performance\controllers;
+namespace pvsaintpe\performance\modules\performance\controllers;
 
 use Yii;
-use common\models\PerformanceColumnSettings;
-use backend\modules\performance\models\PerformanceColumnSettingsSearch;
-use backend\components\Controller;
+use pvsaintpe\performance\models\PerformanceColumnSettings;
+use pvsaintpe\performance\modules\performance\models\PerformanceColumnSettingsSearch;
+use pvsaintpe\search\components\Controller;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 
@@ -16,7 +16,7 @@ use yii\web\NotFoundHttpException;
  */
 class PerformanceColumnSettingsController extends Controller
 {
-    protected $searchClass = 'backend\modules\performance\models\PerformanceColumnSettingsSearch';
+    protected $searchClass = 'pvsaintpe\performance\modules\performance\models\PerformanceColumnSettingsSearch';
 
     /**
      * @inheritdoc
@@ -62,8 +62,11 @@ class PerformanceColumnSettingsController extends Controller
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $performance_id
      * @param string $attribute
-     * @throws NotFoundHttpException if the model cannot be found
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidRouteException
+     * @throws \yii\console\Exception
+     * @throws \yii\db\StaleObjectException
      */
     public function actionDelete($performance_id, $attribute)
     {

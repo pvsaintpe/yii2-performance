@@ -1,18 +1,18 @@
 <?php
 
-namespace common\models\query\base;
+namespace pvsaintpe\performance\models\query\base;
 
 /**
- * This is the ActiveQuery class for [[\common\models\PerformanceLanguageSettings]].
+ * This is the ActiveQuery class for [[\pvsaintpe\performance\models\PerformanceLanguageSettings]].
  *
- * @see \common\models\PerformanceLanguageSettings
+ * @see \pvsaintpe\performance\models\PerformanceLanguageSettings
  */
-class PerformanceLanguageSettingsQueryBase extends \common\components\ActiveQuery
+class PerformanceLanguageSettingsQueryBase extends \pvsaintpe\search\components\ActiveQuery
 {
 
     /**
      * @inheritdoc
-     * @return \common\models\PerformanceLanguageSettings[]|array
+     * @return \pvsaintpe\performance\models\PerformanceLanguageSettings[]|array
      */
     public function all($db = null)
     {
@@ -21,7 +21,7 @@ class PerformanceLanguageSettingsQueryBase extends \common\components\ActiveQuer
 
     /**
      * @inheritdoc
-     * @return \common\models\PerformanceLanguageSettings|array|null
+     * @return \pvsaintpe\performance\models\PerformanceLanguageSettings|array|null
      */
     public function one($db = null)
     {

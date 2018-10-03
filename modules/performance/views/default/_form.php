@@ -5,7 +5,7 @@ use pvsaintpe\log\widgets\ActiveForm;
 use common\models\Admin;
 
 /* @var $this yii\web\View */
-/* @var $model \backend\modules\performance\forms\PerformanceForm */
+/* @var $model \pvsaintpe\performance\modules\performance\forms\PerformanceForm */
 /* @var $form pvsaintpe\log\widgets\ActiveForm */
 
 $form = ActiveForm::begin([

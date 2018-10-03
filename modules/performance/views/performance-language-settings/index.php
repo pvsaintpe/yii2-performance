@@ -5,7 +5,7 @@ use backend\widgets\GridView;
 use backend\components\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\modules\performance\models\PerformanceLanguageSettingsSearch */
+/* @var $searchModel pvsaintpe\performance\modules\performance\models\PerformanceLanguageSettingsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $permissionPrefix */
 

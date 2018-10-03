@@ -1,22 +1,19 @@
 <?php
 
-namespace backend\modules\performance\controllers;
+namespace pvsaintpe\performance\modules\performance\controllers;
 
-use backend\modules\performance\forms\PerformanceForm;
-use backend\modules\performance\forms\PerformanceSettingsForm;
-use backend\modules\performance\forms\PerformanceShareForm;
-use backend\widgets\ActiveForm;
-use common\models\PerformanceAdminSettings;
-use common\models\PerformanceColumnSettings;
-use common\models\PerformanceLanguageSettings;
-use common\models\query\PerformanceAdminSettingsQuery;
+use pvsaintpe\performance\modules\performance\forms\PerformanceForm;
+use pvsaintpe\search\widgets\ActiveForm;
+use pvsaintpe\performance\models\PerformanceAdminSettings;
+use pvsaintpe\performance\models\PerformanceColumnSettings;
+use pvsaintpe\performance\models\PerformanceLanguageSettings;
+use pvsaintpe\performance\models\query\PerformanceAdminSettingsQuery;
 use Yii;
-use common\models\Performance;
-use backend\components\Controller;
-use yii\boost\base\InvalidModelException;
+use pvsaintpe\performance\models\Performance;
+use pvsaintpe\search\components\Controller;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
-use common\components\ActiveRecord;
+use pvsaintpe\search\components\ActiveRecord;
 use yii\web\Response;
 
 /**
@@ -26,7 +23,7 @@ use yii\web\Response;
  */
 class DefaultController extends Controller
 {
-    protected $searchClass = 'backend\modules\performance\models\PerformanceSearch';
+    protected $searchClass = 'pvsaintpe\performance\modules\performance\models\PerformanceSearch';
 
     /**
      * @inheritdoc
@@ -69,6 +66,7 @@ class DefaultController extends Controller
      * @param string $query_params
      * @param string $instance_performance_id
      * @return mixed
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionCreate(
         $search_class,
@@ -122,8 +120,8 @@ class DefaultController extends Controller
      * Updates an existing Performance model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
-     * @throws NotFoundHttpException if the model cannot be found
      * @return mixed
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionUpdate($id)
     {
@@ -167,8 +165,6 @@ class DefaultController extends Controller
             ->one()) {
             throw new NotFoundHttpException('Запрашиваемая страница не найдена.');
         }
-
-
 
         PerformanceLanguageSettings::deleteAll('performance_id = :id', [
             'id' => $id,

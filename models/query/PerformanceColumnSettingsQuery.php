@@ -1,12 +1,12 @@
 <?php
 
-namespace common\models\query;
+namespace pvsaintpe\performance\models\query;
 
-use common\models\query\base\PerformanceColumnSettingsQueryBase;
+use pvsaintpe\performance\models\query\base\PerformanceColumnSettingsQueryBase;
 
 /**
  * Performance column settings query
- * @see \common\models\PerformanceColumnSettings
+ * @see \pvsaintpe\performance\models\PerformanceColumnSettings
  */
 class PerformanceColumnSettingsQuery extends PerformanceColumnSettingsQueryBase
 {

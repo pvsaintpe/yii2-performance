@@ -1,16 +1,11 @@
 <?php
 
-namespace backend\modules\performance\models\base;
+namespace pvsaintpe\performance\modules\performance\models\base;
 
 use Yii;
-use yii\base\Model;
-use yii\data\ActiveDataProvider;
-use common\models\PerformanceAdminSettings;
-use yii\helpers\ArrayHelper;
-use backend\helpers\Html;
+use pvsaintpe\performance\models\PerformanceAdminSettings;
 use pvsaintpe\search\interfaces\SearchInterface;
-use backend\traits\SearchTrait;
-use backend\components\grid\CurrencyColumn;
+use pvsaintpe\performance\traits\SearchTrait;
 
 /**
  * PerformanceAdminSettingsSearchBase represents the model behind the search form about `common\models\PerformanceAdminSettings`.
@@ -75,14 +70,14 @@ class PerformanceAdminSettingsSearchBase extends PerformanceAdminSettings implem
             [
                 'attribute' => 'performance_id',
                 'value' => function ($form, $widget) {
-                    return ($model = $widget->model->performance) ? $model->getDocName() : null;
+                    return ($model = $widget->model->performance) ? $model->getTitleText() : null;
                 },
                 'format' => 'raw',
             ],
             [
                 'attribute' => 'merchant_id',
                 'value' => function ($form, $widget) {
-                    return ($model = $widget->model->merchant) ? $model->getDocName() : null;
+                    return ($model = $widget->model->merchant) ? $model->getTitleText() : null;
                 },
                 'format' => 'raw',
             ],

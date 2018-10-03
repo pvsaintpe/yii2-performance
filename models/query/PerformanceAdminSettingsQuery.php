@@ -1,12 +1,12 @@
 <?php
 
-namespace common\models\query;
+namespace pvsaintpe\performance\models\query;
 
-use common\models\query\base\PerformanceAdminSettingsQueryBase;
+use pvsaintpe\performance\models\query\base\PerformanceAdminSettingsQueryBase;
 
 /**
  * Performance admin settings query
- * @see \common\models\PerformanceAdminSettings
+ * @see \pvsaintpe\performance\models\PerformanceAdminSettings
  */
 class PerformanceAdminSettingsQuery extends PerformanceAdminSettingsQueryBase
 {

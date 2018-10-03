@@ -1,19 +1,44 @@
 <?php
 
-namespace common\models;
+namespace pvsaintpe\performance\models;
 
-use common\models\base\PerformanceBase;
-use common\models\query\PerformanceAdminSettingsQuery;
-use common\models\query\PerformanceQuery;
+use pvsaintpe\boost\base\InvalidModelException;
+use pvsaintpe\performance\interfaces\LanguageInterface;
+use pvsaintpe\performance\components\Language;
+use pvsaintpe\performance\models\base\PerformanceBase;
+use pvsaintpe\performance\models\query\PerformanceAdminSettingsQuery;
 use Yii;
+use yii\base\InvalidArgumentException;
 use yii\db\Expression;
 
 /**
  * Performance
- * @see \common\models\query\PerformanceQuery
+ * @see \pvsaintpe\performance\models\query\PerformanceQuery
  */
 class Performance extends PerformanceBase
 {
+    /**
+     * @var array
+     */
+    protected static $components = [
+        'language' => '\pvsaintpe\performance\components\Language'
+    ];
+
+    /**
+     * @param string $component
+     * @return LanguageInterface
+     */
+    public static function getComponent($component)
+    {
+        if (!isset(static::$components[$component])) {
+             throw new InvalidArgumentException(Yii::t('errors', 'Не определен компонент: {component}', [
+                 'component' => $component
+             ]));
+        }
+
+        return static::$components[$component];
+    }
+
     /**
      * @param array $filters
      * @param bool $globalFilters
@@ -45,10 +70,16 @@ class Performance extends PerformanceBase
                 0 => Yii::t('layout', 'По умолчанию'),
             ];
         }
+
+        /** @var LanguageInterface $language */
+        $language = static::getComponent('language');
+        if (!($language instanceof LanguageInterface)) {
+            throw new \http\Exception\InvalidArgumentException(Yii::t('errors', 'Компонент language не соответствует интерфейсу'));
+        }
         foreach ($records as $key => $name) {
             if ($template = PerformanceLanguageSettings::find()
                 ->performanceId($key)
-                ->languageId(Language::getIdByCode(Yii::$app->language))
+                ->languageId($language::getIdByCode(Yii::$app->language))
                 ->one()
             ) {
                 $result[$key] = $template->name;

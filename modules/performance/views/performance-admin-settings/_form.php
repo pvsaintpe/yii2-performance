@@ -7,7 +7,7 @@ use common\models\Performance;
 use common\models\PerformanceAdminSettings;
 
 /* @var $this yii\web\View */
-/* @var $model \backend\modules\performance\forms\PerformanceShareForm */
+/* @var $model \pvsaintpe\performance\modules\performance\forms\PerformanceShareForm */
 /* @var $form pvsaintpe\log\widgets\ActiveForm */
 
 $form = ActiveForm::begin([

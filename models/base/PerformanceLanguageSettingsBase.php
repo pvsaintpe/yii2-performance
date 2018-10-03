@@ -1,11 +1,9 @@
 <?php
 
-namespace common\models\base;
+namespace pvsaintpe\performance\models\base;
 
 use Yii;
-use common\models\Admin;
-use common\models\Language;
-use common\models\Performance;
+use pvsaintpe\performance\models\Performance;
 
 /**
  * This is the model class for table "performance_language_settings".
@@ -15,12 +13,10 @@ use common\models\Performance;
  * @property string $name
  * @property string $description
  *
- * @property Language $language
  * @property Performance $performance
  * @property Performance $instancePerformance
- * @property Admin $merchant
  */
-class PerformanceLanguageSettingsBase extends \common\components\ActiveRecord
+class PerformanceLanguageSettingsBase extends \pvsaintpe\search\components\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -43,7 +39,6 @@ class PerformanceLanguageSettingsBase extends \common\components\ActiveRecord
             [['performance_id', 'language_id', 'name'], 'required'],
             [['description'], 'string'],
             [['name'], 'string', 'max' => 255],
-            [['language_id'], 'exist', 'skipOnError' => true, 'targetClass' => Language::class, 'targetAttribute' => ['language_id' => 'id']],
             [['performance_id'], 'exist', 'skipOnError' => true, 'targetClass' => Performance::class, 'targetAttribute' => ['performance_id' => 'id']],
             [['description'], 'default', 'value' => null],
         ];
@@ -63,15 +58,7 @@ class PerformanceLanguageSettingsBase extends \common\components\ActiveRecord
     }
 
     /**
-     * @return \common\models\query\LanguageQuery|\yii\db\ActiveQuery
-     */
-    public function getLanguage()
-    {
-        return $this->hasOne(Language::class, ['id' => 'language_id']);
-    }
-
-    /**
-     * @return \common\models\query\PerformanceQuery|\yii\db\ActiveQuery
+     * @return \pvsaintpe\performance\models\query\PerformanceQuery|\yii\db\ActiveQuery
      */
     public function getPerformance()
     {
@@ -79,7 +66,7 @@ class PerformanceLanguageSettingsBase extends \common\components\ActiveRecord
     }
 
     /**
-     * @return \common\models\query\PerformanceQuery|\yii\db\ActiveQuery
+     * @return \pvsaintpe\performance\models\query\PerformanceQuery|\yii\db\ActiveQuery
      */
     public function getInstancePerformance()
     {
@@ -88,21 +75,12 @@ class PerformanceLanguageSettingsBase extends \common\components\ActiveRecord
     }
 
     /**
-     * @return \common\models\query\AdminQuery|\yii\db\ActiveQuery
-     */
-    public function getMerchant()
-    {
-        return $this->hasOne(Admin::class, ['id' => 'merchant_id'])
-            ->viaTable('performance via_performance', ['id' => 'performance_id']);
-    }
-
-    /**
      * @inheritdoc
-     * @return \common\models\query\PerformanceLanguageSettingsQuery the active query used by this AR class.
+     * @return \pvsaintpe\performance\models\query\PerformanceLanguageSettingsQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\query\PerformanceLanguageSettingsQuery(get_called_class());
+        return new \pvsaintpe\performance\models\query\PerformanceLanguageSettingsQuery(get_called_class());
     }
 
     /**
@@ -111,16 +89,9 @@ class PerformanceLanguageSettingsBase extends \common\components\ActiveRecord
     public static function singularRelations()
     {
         return [
-            'language' => [
-                'hasMany' => false,
-                'class' => 'common\models\Language',
-                'link' => ['id' => 'language_id'],
-                'direct' => true,
-                'viaTable' => false
-            ],
             'performance' => [
                 'hasMany' => false,
-                'class' => 'common\models\Performance',
+                'class' => 'pvsaintpe\performance\models\Performance',
                 'link' => ['id' => 'performance_id'],
                 'direct' => true,
                 'viaTable' => false
@@ -165,27 +136,6 @@ class PerformanceLanguageSettingsBase extends \common\components\ActiveRecord
     // {
     //     return $this->performance_id . static::TITLE_SEPARATOR . $this->language_id;
     // }
-
-    /**
-     * @param string|array|\yii\db\Expression $condition
-     * @param array $params
-     * @param string|array|\yii\db\Expression $orderBy
-     * @return array
-     */
-    public function languageIdListItems($condition = null, $params = [], $orderBy = null)
-    {
-        return Language::findListItems($condition, $params, $orderBy);
-    }
-
-    /**
-     * @param array $condition
-     * @param string|array|\yii\db\Expression $orderBy
-     * @return array
-     */
-    public function languageIdFilterListItems(array $condition = [], $orderBy = null)
-    {
-        return Language::findFilterListItems($condition, $orderBy);
-    }
 
     /**
      * @param string|array|\yii\db\Expression $condition

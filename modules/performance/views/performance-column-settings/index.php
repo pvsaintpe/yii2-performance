@@ -5,7 +5,7 @@ use backend\widgets\GridView;
 use backend\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\modules\performance\models\PerformanceColumnSettingsSearch */
+/* @var $searchModel pvsaintpe\performance\modules\performance\models\PerformanceColumnSettingsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $permissionPrefix */
 

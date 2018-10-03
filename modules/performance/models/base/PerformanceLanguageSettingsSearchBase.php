@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\performance\models\base;
+namespace pvsaintpe\performance\modules\performance\models\base;
 
 use pvsaintpe\search\interfaces\SearchInterface;
 use Yii;

@@ -1,13 +1,13 @@
 <?php
 
-namespace common\models\query;
+namespace pvsaintpe\performance\models\query;
 
-use common\components\ActiveQuery;
-use common\models\query\base\PerformanceQueryBase;
+use pvsaintpe\performance\components\ActiveQuery;
+use pvsaintpe\performance\models\query\base\PerformanceQueryBase;
 
 /**
  * Performance query
- * @see \common\models\Performance
+ * @see \pvsaintpe\performance\models\Performance
  */
 class PerformanceQuery extends PerformanceQueryBase
 {

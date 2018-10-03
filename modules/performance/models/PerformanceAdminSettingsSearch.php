@@ -1,12 +1,12 @@
 <?php
 
-namespace backend\modules\performance\models;
+namespace pvsaintpe\performance\modules\performance\models;
 
 use common\models\PerformanceAdminSettings;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\performance\models\base\PerformanceAdminSettingsSearchBase;
+use pvsaintpe\performance\modules\performance\models\base\PerformanceAdminSettingsSearchBase;
 use backend\helpers\Html;
 
 /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\performance\interfaces;
+namespace pvsaintpe\performance\interfaces;
 
 /**
  * Interface PerformanceInterface

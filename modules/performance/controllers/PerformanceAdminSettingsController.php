@@ -1,20 +1,14 @@
 <?php
 
-namespace backend\modules\performance\controllers;
+namespace pvsaintpe\performance\modules\performance\controllers;
 
-use backend\modules\performance\forms\PerformanceShareForm;
-use backend\widgets\ActiveForm;
-use common\models\Performance;
+use pvsaintpe\performance\modules\performance\forms\PerformanceShareForm;
 use Yii;
-use common\models\PerformanceAdminSettings;
-use backend\modules\performance\models\PerformanceAdminSettingsSearch;
-use backend\components\Controller;
-use yii\boost\base\InvalidModelException;
+use pvsaintpe\performance\models\PerformanceAdminSettings;
+use pvsaintpe\performance\modules\performance\models\PerformanceAdminSettingsSearch;
+use pvsaintpe\search\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-use common\components\ActiveRecord;
-use yii\web\Response;
 
 /**
  * PerformanceAdminSettingsController implements the CRUD actions for PerformanceAdminSettings model.
@@ -23,7 +17,7 @@ use yii\web\Response;
  */
 class PerformanceAdminSettingsController extends Controller
 {
-    protected $searchClass = 'backend\modules\performance\models\PerformanceAdminSettingsSearch';
+    protected $searchClass = 'pvsaintpe\performance\modules\performance\models\PerformanceAdminSettingsSearch';
 
     /**
      * @inheritdoc
@@ -156,7 +150,7 @@ class PerformanceAdminSettingsController extends Controller
      * Включение/выключение.
      * @param integer $id
      * @return mixed
-     * @throws InvalidModelException
+     * @throws NotFoundHttpException
      */
     public function actionSwitch($id)
     {
@@ -204,7 +198,8 @@ class PerformanceAdminSettingsController extends Controller
      * Установка значения по умолчанию.
      * @param integer $id
      * @return mixed
-     * @throws InvalidModelException
+     * @throws NotFoundHttpException
+     * @throws \yii\db\Exception
      */
     public function actionDefault($id)
     {

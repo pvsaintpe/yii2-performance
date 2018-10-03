@@ -1,18 +1,18 @@
 <?php
 
-namespace common\models\query\base;
+namespace pvsaintpe\performance\models\query\base;
 
 /**
- * This is the ActiveQuery class for [[\common\models\PerformanceAdminSettings]].
+ * This is the ActiveQuery class for [[\pvsaintpe\performance\models\PerformanceAdminSettings]].
  *
- * @see \common\models\PerformanceAdminSettings
+ * @see \pvsaintpe\performance\models\PerformanceAdminSettings
  */
-class PerformanceAdminSettingsQueryBase extends \common\components\ActiveQuery
+class PerformanceAdminSettingsQueryBase extends \pvsaintpe\search\components\ActiveQuery
 {
 
     /**
      * @inheritdoc
-     * @return \common\models\PerformanceAdminSettings[]|array
+     * @return \pvsaintpe\performance\models\PerformanceAdminSettings[]|array
      */
     public function all($db = null)
     {
@@ -21,7 +21,7 @@ class PerformanceAdminSettingsQueryBase extends \common\components\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\PerformanceAdminSettings|array|null
+     * @return \pvsaintpe\performance\models\PerformanceAdminSettings|array|null
      */
     public function one($db = null)
     {

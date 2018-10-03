@@ -1,12 +1,12 @@
 <?php
 
-namespace common\models\query;
+namespace pvsaintpe\performance\models\query;
 
-use common\models\query\base\PerformanceLanguageSettingsQueryBase;
+use pvsaintpe\performance\models\query\base\PerformanceLanguageSettingsQueryBase;
 
 /**
  * Performance language settings query
- * @see \common\models\PerformanceLanguageSettings
+ * @see \pvsaintpe\performance\models\PerformanceLanguageSettings
  */
 class PerformanceLanguageSettingsQuery extends PerformanceLanguageSettingsQueryBase
 {

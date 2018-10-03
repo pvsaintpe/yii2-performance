@@ -1,12 +1,12 @@
 <?php
 
-namespace backend\modules\performance\models;
+namespace pvsaintpe\performance\modules\performance\models;
 
 use backend\helpers\Html;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\performance\models\base\PerformanceLanguageSettingsSearchBase;
+use pvsaintpe\performance\modules\performance\models\base\PerformanceLanguageSettingsSearchBase;
 use yii\helpers\ArrayHelper;
 
 /**

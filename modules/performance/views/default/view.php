@@ -6,7 +6,7 @@ use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
-/* @var $model backend\modules\performance\models\base\PerformanceSearchBase */
+/* @var $model pvsaintpe\performance\modules\performance\models\base\PerformanceSearchBase */
 
 $this->title = $model->getListTitle();
 ?>

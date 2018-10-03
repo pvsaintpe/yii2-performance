@@ -1,21 +1,20 @@
 <?php
 
-namespace backend\modules\performance\forms;
+namespace pvsaintpe\performance\modules\performance\forms;
 
-use backend\traits\SearchTrait;
-use common\components\ActiveRecord;
-use common\models\Performance;
-use common\models\PerformanceAdminSettings;
-use common\models\PerformanceColumnSettings;
-use common\models\query\PerformanceAdminSettingsQuery;
+use pvsaintpe\search\interfaces\SearchInterface;
+use pvsaintpe\search\components\ActiveRecord;
+use pvsaintpe\performance\models\Performance;
+use pvsaintpe\performance\models\PerformanceAdminSettings;
+use pvsaintpe\performance\models\PerformanceColumnSettings;
+use pvsaintpe\performance\models\query\PerformanceAdminSettingsQuery;
 use yii\base\Model;
 use Yii;
-use yii\helpers\Inflector;
 use yii\web\NotFoundHttpException;
 
 /**
  * Class PerformanceForm
- * @package backend\modules\performance\forms
+ * @package pvsaintpe\performance\modules\performance\forms
  */
 class PerformanceForm extends Model
 {
@@ -138,6 +137,7 @@ class PerformanceForm extends Model
 
     /**
      * @return bool
+     * @throws \yii\db\Exception
      */
     public function save()
     {
@@ -169,7 +169,7 @@ class PerformanceForm extends Model
         if ($this->isNewRecord) {
             if (!$instanceExists) {
                 $searchClass = $this->performance->search_class;
-                /** @var SearchTrait|ActiveRecord $searchModel */
+                /** @var SearchInterface|ActiveRecord $searchModel */
                 $searchModel = new $searchClass;
                 $columns = array_keys($searchModel->getGridColumns());
                 $disableColumns = array_diff($searchModel->getDisableColumns(), $searchModel->getEnableColumns());

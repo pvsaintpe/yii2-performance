@@ -1,10 +1,9 @@
 <?php
 
-namespace common\models\base;
+namespace pvsaintpe\performance\models\base;
 
 use Yii;
-use common\models\Admin;
-use common\models\Performance;
+use pvsaintpe\performance\models\Performance;
 
 /**
  * This is the model class for table "performance_column_settings".
@@ -28,9 +27,8 @@ use common\models\Performance;
  *
  * @property Performance $performance
  * @property Performance $instancePerformance
- * @property Admin $merchant
  */
-class PerformanceColumnSettingsBase extends \common\components\ActiveRecord
+class PerformanceColumnSettingsBase extends \pvsaintpe\search\components\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -123,7 +121,7 @@ class PerformanceColumnSettingsBase extends \common\components\ActiveRecord
     }
 
     /**
-     * @return \common\models\query\PerformanceQuery|\yii\db\ActiveQuery
+     * @return \pvsaintpe\performance\models\query\PerformanceQuery|\yii\db\ActiveQuery
      */
     public function getPerformance()
     {
@@ -131,7 +129,7 @@ class PerformanceColumnSettingsBase extends \common\components\ActiveRecord
     }
 
     /**
-     * @return \common\models\query\PerformanceQuery|\yii\db\ActiveQuery
+     * @return \pvsaintpe\performance\models\query\PerformanceQuery|\yii\db\ActiveQuery
      */
     public function getInstancePerformance()
     {
@@ -140,21 +138,12 @@ class PerformanceColumnSettingsBase extends \common\components\ActiveRecord
     }
 
     /**
-     * @return \common\models\query\AdminQuery|\yii\db\ActiveQuery
-     */
-    public function getMerchant()
-    {
-        return $this->hasOne(Admin::class, ['id' => 'merchant_id'])
-            ->viaTable('performance via_performance', ['id' => 'performance_id']);
-    }
-
-    /**
      * @inheritdoc
-     * @return \common\models\query\PerformanceColumnSettingsQuery the active query used by this AR class.
+     * @return \pvsaintpe\performance\models\query\PerformanceColumnSettingsQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\query\PerformanceColumnSettingsQuery(get_called_class());
+        return new \pvsaintpe\performance\models\query\PerformanceColumnSettingsQuery(get_called_class());
     }
 
     /**
@@ -165,7 +154,7 @@ class PerformanceColumnSettingsBase extends \common\components\ActiveRecord
         return [
             'performance' => [
                 'hasMany' => false,
-                'class' => 'common\models\Performance',
+                'class' => 'pvsaintpe\performance\models\Performance',
                 'link' => ['id' => 'performance_id'],
                 'direct' => true,
                 'viaTable' => false
